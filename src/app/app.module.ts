@@ -9,13 +9,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table'
 import {MatButtonModule} from '@angular/material/button';
 
-import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { InputDialogComponent } from './expense-types/input-dialog/input-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ExpenseTypesModule,
+    InputDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +27,10 @@ import { MatToolbarModule } from '@angular/material/toolbar'
     MatToolbarModule,
     MatTableModule,
     MatButtonModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    InputDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
