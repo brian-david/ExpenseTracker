@@ -27,10 +27,11 @@ import { InputDialogComponent } from './expense-types/input-dialog/input-dialog.
     MatToolbarModule,
     MatTableModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   entryComponents: [
-    InputDialogComponent
+    InputDialogComponent,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
