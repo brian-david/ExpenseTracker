@@ -12,6 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { InputDialogComponent } from './expense-types/input-dialog/input-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { InputDialogComponent } from './expense-types/input-dialog/input-dialog.
     MatTableModule,
     MatButtonModule,
     MatDialogModule,
+    HttpClientModule
   ],
   entryComponents: [
     InputDialogComponent,
