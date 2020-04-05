@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { ExpenseTypeService } from './../services/expense_types.service';
+import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { InputDialogComponent } from './input-dialog/input-dialog.component';
 
@@ -8,8 +9,35 @@ import { InputDialogComponent } from './input-dialog/input-dialog.component';
   styleUrls: ['expense-types.component.css']
 })
 
-export class ExpenseTypesModule{
-  constructor(private dialog: MatDialog) {}
+export class ExpenseTypesModule implements OnInit{
+  expenseTypes: any;
+  currentExpenseType = null;
+  currentIndex = -1;
+  title = '';
+
+  displayedColumns = ['name', 'comment'];
+
+  constructor(private expenseTypesService: ExpenseTypeService) { }
+
+  //constructor(private dialog: MatDialog) {}
+
+  ngOnInit() {
+    this.retrieveExpenseTypes();
+  }
+
+  retrieveExpenseTypes() {
+    this.expenseTypesService.getAll()
+      .subscribe(
+        data => {
+          this.expenseTypes = data;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  /*
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
@@ -19,4 +47,5 @@ export class ExpenseTypesModule{
   addExpenseType(){
     alert('Add a new expense type');
   }
+  */
 }
