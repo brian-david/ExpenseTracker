@@ -15,21 +15,22 @@ export class ExpenseTypeService {
   }
 
   create(data) {
-    return this.http.post(baseUrl, data);
+    return this.http.post(`${baseUrl}expense_type`, data);
+  }
+
+  delete(id) {
+    return this.http.delete(`${baseUrl}expense_type/${id}`);
   }
 
   /*
+  update(id) {
+    return this.http.put(`${baseUrl}expense_type/${id}`, data);
+  }
   get(id) {
     return this.http.get(`${baseUrl}/${id}`);
   }
 
-  update(id, data) {
-    return this.http.put(`${baseUrl}/${id}`, data);
-  }
 
-  delete(id) {
-    return this.http.delete(`${baseUrl}/${id}`);
-  }
 
   deleteAll() {
     return this.http.delete(baseUrl);

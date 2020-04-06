@@ -1,0 +1,13 @@
+
+<div mat-dialog-content>
+  <p>Add a new expense type category</p>
+    <mat-label>Expense Type Name</mat-label>
+    <input [(ngModel)]="expenseType.name">
+    <mat-label>Expense Type Comment</mat-label>
+    <input [(ngModel)]="expenseType.comment"/>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button cdkFocusInitial (click)="saveExpenseType()">Ok</button>
+</div>

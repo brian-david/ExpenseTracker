@@ -15,11 +15,16 @@ export class ExpenseTypesModule implements OnInit{
   currentIndex = -1;
   title = '';
 
-  displayedColumns = ['name', 'comment'];
+  displayedColumns = ['name', 'comment', 'tools'];
 
-  constructor(private expenseTypesService: ExpenseTypeService) { }
-
-  //constructor(private dialog: MatDialog) {}
+  constructor(private expenseTypesService: ExpenseTypeService, private dialog: MatDialog) {
+    dialog.afterAllClosed
+    .subscribe(() => {
+    // update a variable or call a function when the dialog closes
+      this.refreshList();
+    }
+  );
+  }
 
   ngOnInit() {
     this.retrieveExpenseTypes();
@@ -37,15 +42,50 @@ export class ExpenseTypesModule implements OnInit{
         });
   }
 
-  /*
+  deleteElement(id){
+    console.log("DELETE ELEMENT WITH ID: "+id);
+    this.expenseTypesService.delete(id).subscribe(response=>{
+      console.log(response);
+      this.refreshList();
+    },
+    error => {
+      console.log(error);
+    });
+
+  }
+
   openDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    this.dialog.open(InputDialogComponent, dialogConfig);
+    //this.dialog.open(InputDialogComponent, dialogConfig);
+    const dialogRef = this.dialog.open(InputDialogComponent, dialogConfig);
   }
 
-  addExpenseType(){
-    alert('Add a new expense type');
+openEditDialog(){
+  const dialogConfig = new MatDialogConfig();
+
+  dialogConfig.disableClose = true;
+  dialogConfig.autoFocus = true;
+
+  dialogConfig.data = {
+      id: 1,
+      title: 'Angular For Beginners'
+  };
+
+  this.dialog.open(InputDialogComponent, dialogConfig);
+}
+
+  refreshList() {
+    this.retrieveExpenseTypes();
+    this.currentExpenseType = null;
+    this.currentIndex = -1;
+  }
+/*
+  editElement(id){
+    console.log("edit element"+id);
+    this.expenseTypesService.update(id).subscribe(response=>{
+      console.log(response);
+    });
   }
   */
 }
